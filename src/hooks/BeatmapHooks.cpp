@@ -145,36 +145,69 @@ MAKE_PAPER_HOOK_MATCH(CustomInsertBeatmapEventData, &BeatmapData::InsertBeatmapE
   CustomInsertBeatmapEventData(self, item);
 }
 MAKE_PAPER_HOOK_MATCH(BurstSliderSpawner_ProcessSliderData, &BurstSliderSpawner::ProcessSliderData, void,
-            ::GlobalNamespace::SliderData* sliderData,
-            ::ByRef<::GlobalNamespace::SliderSpawnData> sliderSpawnData, bool forceIsFirstNote,
-            ::GlobalNamespace::VariableMovementDataProvider* variableMovementDataProvider,
-            ::GlobalNamespace::BurstSliderSpawner_ProcessNoteDataDelegate* processNoteData) {
+                      ::GlobalNamespace::SliderData* sliderData,
+                      ::ByRef<::GlobalNamespace::SliderSpawnData> sliderSpawnData, bool forceIsFirstNote,
+                      ::GlobalNamespace::VariableMovementDataProvider* variableMovementDataProvider,
+                      ::GlobalNamespace::BurstSliderSpawner_ProcessNoteDataDelegate* processNoteData) {
 
   static auto CustomKlass = classof(CustomJSONData::CustomSliderData*);
 
   auto* customSliderData = il2cpp_utils::try_cast<CustomJSONData::CustomSliderData>(sliderData).value_or(nullptr);
   if (customSliderData == nullptr) {
-  return BurstSliderSpawner_ProcessSliderData(sliderData, sliderSpawnData, forceIsFirstNote,
-                        variableMovementDataProvider, processNoteData);
+    return BurstSliderSpawner_ProcessSliderData(sliderData, sliderSpawnData, forceIsFirstNote,
+                                                variableMovementDataProvider, processNoteData);
   }
 
+  /*
+
+    float halfJumpDuration = variableMovementDataProvider.halfJumpDuration;
+    float num = variableMovementDataProvider.CalculateCurrentNoteJumpGravity(sliderSpawnData.headGravityBase);
+    float num2 = variableMovementDataProvider.CalculateCurrentNoteJumpGravity(sliderSpawnData.tailGravityBase);
+    Vector2 vector = new Vector2(sliderSpawnData.headNoteOffset.x, sliderSpawnData.headNoteOffset.y + num *
+    halfJumpDuration * halfJumpDuration * 0.5f); Vector2 p = new Vector2(sliderSpawnData.tailNoteOffset.x,
+    sliderSpawnData.tailNoteOffset.y + num2 * halfJumpDuration * halfJumpDuration * 0.5f) - vector; float magnitude =
+    p.magnitude; float f = (sliderData.headCutDirection.RotationAngle() - 90f + sliderData.headCutDirectionAngleOffset)
+    * (MathF.PI / 180f); Vector2 p2 = 0.5f * magnitude * new Vector2(Mathf.Cos(f), Mathf.Sin(f)); int sliceCount =
+    sliderData.sliceCount; float squishAmount = sliderData.squishAmount; float time = sliderData.time; float tailTime =
+    sliderData.tailTime; float num3 = (tailTime - time) * 0.5f; for (int i = 1; i < sliceCount; i++)
+    {
+        float num4 = (float)i / (float)(sliceCount - 1);
+        int lineIndex = ((i < sliceCount - 1) ? sliderData.headLineIndex : sliderData.tailLineIndex);
+        NoteLineLayer noteLineLayer = ((i < sliceCount - 1) ? sliderData.headLineLayer : sliderData.tailLineLayer);
+
+        NoteData noteData = NoteData.CreateBurstSliderNoteData(Mathf.LerpUnclamped(time, tailTime, num4),
+        sliderData.beat, sliderData.rotation, lineIndex, noteLineLayer, sliderData.headBeforeJumpLineLayer,
+        sliderData.colorType, NoteCutDirection.Any, 1f);
+
+        noteData.timeToPrevColorNote = num4 * num3;
+        BezierCurve(new Vector2(0f, 0f), p2, p, num4 * squishAmount, out var pos, out var tangent);
+        noteData.SetCutDirectionAngleOffset(Vector2.SignedAngle(new Vector2(0f, -1f), tangent));
+        noteData.timeToNextColorNote = ((i == sliceCount - 1) ? 1f : 0.4f);
+        processNoteData(noteData, new NoteSpawnData(sliderSpawnData.headNoteOffset + new Vector3(pos.x, 0f, 0f),
+        sliderSpawnData.headNoteOffset + new Vector3(pos.x, 0f, 0f), sliderSpawnData.headNoteOffset + new Vector3(pos.x,
+    0f, 0f), num * halfJumpDuration * halfJumpDuration * 0.5f + pos.y), forceIsFirstNote);
+    }
+*/
   float halfJumpDuration = variableMovementDataProvider->halfJumpDuration;
   float headGravity = variableMovementDataProvider->CalculateCurrentNoteJumpGravity(sliderSpawnData->headGravityBase);
   float tailGravity = variableMovementDataProvider->CalculateCurrentNoteJumpGravity(sliderSpawnData->tailGravityBase);
 
-  auto vector = Sombrero::FastVector2(sliderSpawnData->headNoteOffset.x, 
-    sliderSpawnData->headNoteOffset.y + headGravity * halfJumpDuration * halfJumpDuration * 0.5f);
-  
-  auto vector2 = Sombrero::FastVector2(sliderSpawnData->tailNoteOffset.x,
-    sliderSpawnData->tailNoteOffset.y + tailGravity * halfJumpDuration * halfJumpDuration * 0.5f);
+  auto vector = Sombrero::FastVector2(sliderSpawnData->headNoteOffset.x,
+                                      sliderSpawnData->headNoteOffset.y +
+                                          headGravity * halfJumpDuration * halfJumpDuration * 0.5f);
 
-  auto vector3 = vector2 - vector;
-  float magnitude = vector3.Magnitude();
-  
-  float angle = (NoteCutDirectionExtensions::RotationAngle(sliderData->headCutDirection) - 90.0f +
-         sliderData->headCutDirectionAngleOffset) * 0.017453292f;
-  auto vector4 = Sombrero::FastVector2(std::cos(angle), std::sin(angle)) * 0.5f * magnitude;
-  
+  auto vector2 = Sombrero::FastVector2(sliderSpawnData->tailNoteOffset.x,
+                                       sliderSpawnData->tailNoteOffset.y +
+                                           tailGravity * halfJumpDuration * halfJumpDuration * 0.5f);
+
+  auto p = vector2 - vector;
+  float magnitude = p.Magnitude();
+
+  float f = (NoteCutDirectionExtensions::RotationAngle(sliderData->headCutDirection) - 90.0f +
+             sliderData->headCutDirectionAngleOffset) *
+            (M_PI / 180.0f);
+  auto p2 = Sombrero::FastVector2(std::cos(f), std::sin(f)) * magnitude * 0.5f;
+
   int sliceCount = sliderData->sliceCount;
   float squishAmount = sliderData->squishAmount;
   float time = sliderData->time;
@@ -182,40 +215,40 @@ MAKE_PAPER_HOOK_MATCH(BurstSliderSpawner_ProcessSliderData, &BurstSliderSpawner:
   float num3 = (tailTime - time) * 0.5f;
 
   auto bezierCurve = [](Sombrero::FastVector2 p0, Sombrero::FastVector2 p1, Sombrero::FastVector2 p2, float t,
-            Sombrero::FastVector2& pos, Sombrero::FastVector2& tangent) constexpr {
-  float num = 1.0f - t;
-  pos = p0 * num * num + p1 * 2.0f * num * t + p2 * t * t;
-  tangent = (p1 - p0) * 2.0f * (1.0f - t) + (p2 - p1) * 2.0f * t;
+                        Sombrero::FastVector2& pos, Sombrero::FastVector2& tangent) constexpr {
+    float num = 1.0f - t;
+    pos = p0 * num * num + p1 * 2.0f * num * t + p2 * t * t;
+    tangent = (p1 - p0) * 2.0f * (1.0f - t) + (p2 - p1) * 2.0f * t;
   };
 
   for (int i = 1; i < sliceCount; i++) {
-  float sliceT = (float)i / (float)(sliceCount - 1);
-  int index = ((i < sliceCount - 1) ? sliderData->headLineIndex : sliderData->tailLineIndex);
-  auto noteLineLayer = ((i < sliceCount - 1) ? sliderData->headLineLayer : sliderData->tailLineLayer);
+    float num4 = (float)i / (float)(sliceCount - 1);
+    int lineIndex = ((i < sliceCount - 1) ? sliderData->headLineIndex : sliderData->tailLineIndex);
+    auto noteLineLayer = ((i < sliceCount - 1) ? sliderData->headLineLayer : sliderData->tailLineLayer);
 
-  // TRANSPILE HERE
-  auto noteData =
-      CreateCustomBurstNoteData(std::lerp(time, tailTime, sliceT), sliderData->beat, sliderData->rotation, index,
-                                noteLineLayer, sliderData->headBeforeJumpLineLayer, sliderData->colorType,
-                                NoteCutDirection::Any, 1.0f, customSliderData->customData->value);
-  // copy the AD from the original note
-  noteData->customData->associatedData = customSliderData->customData->associatedData;
-  // TRANSPILE END
-  
-  noteData->timeToPrevColorNote = sliceT * num3;
-  Sombrero::FastVector2 position;
-  Sombrero::FastVector2 tangent;
-  bezierCurve(Sombrero::FastVector2::zero(), vector4, vector3, sliceT * squishAmount, position, tangent);
-  noteData->SetCutDirectionAngleOffset(Sombrero::FastVector2::SignedAngle({ 0.0f, -1.0f }, tangent));
-  noteData->timeToNextColorNote = ((i == sliceCount - 1) ? 1.0f : 0.4f);
+    // TRANSPILE HERE
+    auto noteData =
+        CreateCustomBurstNoteData(std::lerp(time, tailTime, num4), sliderData->beat, sliderData->rotation, lineIndex,
+                                  noteLineLayer, sliderData->headBeforeJumpLineLayer, sliderData->colorType,
+                                  NoteCutDirection::Any, 1.0f, customSliderData->customData->value);
+    // copy the AD from the original note
+    noteData->customData->associatedData = customSliderData->customData->associatedData;
+    // TRANSPILE END
 
-  auto headNoteOffset = Sombrero::FastVector3(sliderSpawnData->headNoteOffset);
-  auto noteSpawnData = NoteSpawnData(headNoteOffset + Sombrero::FastVector3(vector.x, 0.0f, 0.0f),
-                                     headNoteOffset + Sombrero::FastVector3(vector.x, 0.0f, 0.0f),
-                                     headNoteOffset + Sombrero::FastVector3(vector.x, 0.0f, 0.0f),
-                                     headGravity * halfJumpDuration * halfJumpDuration * 0.5f + vector.y);
+    noteData->timeToPrevColorNote = num4 * num3;
+    Sombrero::FastVector2 pos;
+    Sombrero::FastVector2 tangent;
+    bezierCurve(Sombrero::FastVector2::zero(), p2, p, num4 * squishAmount, pos, tangent);
+    noteData->SetCutDirectionAngleOffset(Sombrero::FastVector2::SignedAngle({ 0.0f, -1.0f }, tangent));
+    noteData->timeToNextColorNote = ((i == sliceCount - 1) ? 1.0f : 0.4f);
 
-  processNoteData->Invoke(noteData, noteSpawnData, forceIsFirstNote);
+    auto headNoteOffset = Sombrero::FastVector3(sliderSpawnData->headNoteOffset);
+    auto noteSpawnData = NoteSpawnData(headNoteOffset + Sombrero::FastVector3(pos.x, 0.0f, 0.0f),
+                                       headNoteOffset + Sombrero::FastVector3(pos.x, 0.0f, 0.0f),
+                                       headNoteOffset + Sombrero::FastVector3(pos.x, 0.0f, 0.0f),
+                                       headGravity * halfJumpDuration * halfJumpDuration * 0.5f + pos.y);
+
+    processNoteData->Invoke(noteData, noteSpawnData, forceIsFirstNote);
   }
 }
 

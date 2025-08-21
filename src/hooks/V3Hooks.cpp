@@ -296,8 +296,9 @@ MAKE_PAPER_HOOK_MATCH(BeatmapDataLoader_GetBeatmapDataFromSaveData_v3,
         [&BeatToTime, &rotationTimeProcessor](v3::CustomBeatmapSaveData_ObstacleData* data) constexpr {
           float beat = BeatToTime(data->b);
           auto* obstacle = CustomObstacleData::New_ctor(
-              BeatToTime(data->b), data->b, data->b + data->duration, rotationTimeProcessor->ConvertBeatToRotation(data->b), data->line,
-              GetNoteLineLayer(data->layer), BeatToTime(data->b + data->duration) - beat, data->width, data->height);
+              BeatToTime(data->b), data->b, data->b + data->duration,
+              rotationTimeProcessor->ConvertBeatToRotation(data->b), data->line, GetNoteLineLayer(data->layer),
+              BeatToTime(data->b + data->duration) - beat, data->width, data->height);
 
           obstacle->customData = CustomJSONData::JSONWrapperOrNull(data->customData);
 
@@ -412,13 +413,14 @@ MAKE_PAPER_HOOK_MATCH(BeatmapDataLoader_GetBeatmapDataFromSaveData_v3,
       CJDLogger::Logger.info("Special events filter {}", fmt::ptr(specialEventsFilter->____eventTypesToFilter));
 
       eventConverter.AddConverter<v3::CustomBeatmapSaveData_BasicEventData*>(
-          [&BeatToTime, &specialEventsFilter, rotationTimeProcessor](v3::CustomBeatmapSaveData_BasicEventData* data) constexpr {
+          [&BeatToTime, &specialEventsFilter,
+           rotationTimeProcessor](v3::CustomBeatmapSaveData_BasicEventData* data) constexpr {
             if (!specialEventsFilter->IsEventValid(data->eventType)) {
               return static_cast<CustomBeatmapEventData*>(nullptr);
             }
 
-            auto* event = CustomBeatmapEventData::New_ctor(BeatToTime(data->b), 
-                                                           data->eventType.value__, data->value, data->floatValue);
+            auto* event = CustomBeatmapEventData::New_ctor(BeatToTime(data->b), data->eventType.value__, data->value,
+                                                           data->floatValue);
 
             event->customData = CustomJSONData::JSONWrapperOrNull(data->customData);
 
@@ -427,8 +429,7 @@ MAKE_PAPER_HOOK_MATCH(BeatmapDataLoader_GetBeatmapDataFromSaveData_v3,
 
       eventConverter.AddConverter<BeatmapSaveDataVersion3::ColorBoostEventData*>(
           [&BeatToTime, rotationTimeProcessor](BeatmapSaveDataVersion3::ColorBoostEventData* data) constexpr {
-            return CustomJSONData::NewFast<ColorBoostBeatmapEventData*>(
-                BeatToTime(data->beat), data->boost);
+            return CustomJSONData::NewFast<ColorBoostBeatmapEventData*>(BeatToTime(data->beat), data->boost);
           });
 
       CJDLogger::Logger.fmtLog<LogLevel::DBG>("basic events");

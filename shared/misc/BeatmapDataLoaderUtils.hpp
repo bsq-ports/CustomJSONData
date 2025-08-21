@@ -123,16 +123,16 @@ static auto CustomSliderData_CreateCustomBurstSliderData(
 }
 
 static auto CustomSliderData_CreateCustomSliderData(
-    ColorType colorType, float headTime, float headBeat, int headRotation, int headLineIndex,
-    NoteLineLayer headLineLayer, NoteLineLayer headBeforeJumpLineLayer, float headControlPointLengthMultiplier,
-    NoteCutDirection headCutDirection, float tailTime, int tailRotation, int tailLineIndex, NoteLineLayer tailLineLayer,
+    ColorType colorType, float headTime, float headBeat, int rotation, int headLineIndex, NoteLineLayer headLineLayer,
+    NoteLineLayer headBeforeJumpLineLayer, float headControlPointLengthMultiplier, NoteCutDirection headCutDirection,
+    float tailTime, int tailRotation, int tailLineIndex, NoteLineLayer tailLineLayer,
     NoteLineLayer tailBeforeJumpLineLayer, float tailControlPointLengthMultiplier, NoteCutDirection tailCutDirection,
     SliderMidAnchorMode midAnchorMode, CustomJSONData::v3::CustomDataOpt const& customData) {
   auto* slider = CustomSliderData::New_ctor(
-      GlobalNamespace::SliderData::Type::Normal, colorType, false, headTime, headBeat, headRotation, headLineIndex,
-      headLineLayer, headBeforeJumpLineLayer, headControlPointLengthMultiplier, headCutDirection, 0.0F, false, tailTime,
+      GlobalNamespace::SliderData::Type::Normal, colorType, false, headTime, headBeat, rotation, headLineIndex,
+      headLineLayer, headBeforeJumpLineLayer, headControlPointLengthMultiplier, headCutDirection, 0, false, tailTime,
       tailRotation, tailLineIndex, tailLineLayer, tailBeforeJumpLineLayer, tailControlPointLengthMultiplier,
-      tailCutDirection, 0.0F, midAnchorMode, 0, 1.0F);
+      tailCutDirection, 0.0f, midAnchorMode, 0.0f, 1.0f);
 
   slider->customData = CustomJSONData::JSONWrapperOrNull(customData);
 
