@@ -73,6 +73,7 @@ MAKE_PAPER_HOOK_MATCH(BeatmapDataLoader_GetBeatmapDataFromSaveDataJson_v3,
         environmentInfo, beatmapLevelDataVersion, playerSpecificSettings, lightEventConverter);
   }
 
+  // fallback to v3 loader if we can't parse v3 data
   auto saveData = v3::CustomBeatmapSaveData::Deserialize(*sharedDoc);
   if (!saveData) {
     return BeatmapDataLoader_GetBeatmapDataFromSaveDataJson_v3(
@@ -98,8 +99,8 @@ MAKE_PAPER_HOOK_MATCH(BeatmapDataLoader_GetBeatmapDataFromSaveDataJson_v3,
                                  ->i___GlobalNamespace__IEnvironmentLightGroups();
   }
 
-  std::string contents(beatmapJson);
-  auto version = GetVersionFromPath(contents);
+
+  // auto version = GetVersionFromPath(beatmapJson);
 
   auto beatmapData = BeatmapDataLoaderVersion3::BeatmapDataLoader::GetBeatmapDataFromSaveData(
       saveData, defaultLightshowSaveData, beatmapDifficulty, startBpm, loadingForDesignatedEnvironment,

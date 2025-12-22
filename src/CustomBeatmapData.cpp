@@ -9,6 +9,7 @@
 #include "CustomJSONDataHooks.h"
 
 #include "System/Collections/Generic/HashSet_1.hpp"
+#include <limits>
 
 using namespace GlobalNamespace;
 
@@ -177,7 +178,7 @@ void CustomJSONData::CustomObstacleData::ctor(float time, float beat, float endB
   INVOKE_CTOR();
   this->____executionOrder_k__BackingField = beat;
   this->____subtypeIdentifier_k__BackingField = rotation;
-  this->aheadTimeNoodle = 0;
+  this->aheadTimeNoodle = std::numeric_limits<float>::infinity();
 }
 
 CustomJSONData::CustomObstacleData* CustomJSONData::CustomObstacleData::GetCopy() {
@@ -211,6 +212,7 @@ void CustomJSONData::CustomSliderData::ctor(
       tailControlPointLengthMultiplier, tailCutDirection, tailCutDirectionAngleOffset, midAnchorMode, sliceCount,
       squishAmount);
   INVOKE_CTOR();
+  this->aheadTimeNoodle = std::numeric_limits<float>::infinity();
 }
 
 CustomJSONData::CustomSliderData* CustomJSONData::CustomSliderData::GetCopy() {
@@ -224,6 +226,7 @@ CustomJSONData::CustomSliderData* CustomJSONData::CustomSliderData::GetCopy() {
     copy->customData = this->customData->GetCopy();
   }
   copy->bpm = this->bpm;
+  copy->aheadTimeNoodle = this->aheadTimeNoodle;
   return copy;
 }
 
@@ -241,7 +244,7 @@ void CustomJSONData::CustomNoteData::ctor(
   INVOKE_CTOR();
   this->____executionOrder_k__BackingField = beat;
   this->____subtypeIdentifier_k__BackingField = rotation;
-  this->aheadTimeNoodle = 0;
+  this->aheadTimeNoodle = std::numeric_limits<float>::infinity();
 }
 
 CustomJSONData::CustomNoteData* CustomJSONData::CustomNoteData::GetCopy() {

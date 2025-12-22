@@ -1,4 +1,6 @@
 #include <regex>
+#include <string>
+#include <string_view>
 #include <type_traits>
 #include <vector>
 
@@ -53,13 +55,13 @@ static std::optional<std::shared_ptr<rapidjson::Document>> parseDocument(std::st
   return sharedDoc;
 }
 
-static std::string GetVersionFromPath(std::string_view path) {
+static std::u16string GetVersionFromPath(std::u16string_view path) {
   // SongCore has a fallback so i guess i do too
-  static std::string_view const fallback = "2.0.0";
+  static std::u16string_view const fallback = u"2.0.0";
 
   auto truncatedText = path.substr(0, 50);
   static std::regex const versionRegex(R"("_?version"\s*:\s*"[0-9]+\.[0-9]+\.?[0-9]?")");
-  std::match_results<std::string_view::const_iterator> matches;
+  std::match_results<std::u16string_view::const_iterator> matches;
   if (std::regex_search(truncatedText.begin(), truncatedText.end(), matches, versionRegex)) {
     if (!matches.empty()) {
       auto version = matches[0].str();
@@ -70,6 +72,6 @@ static std::string GetVersionFromPath(std::string_view path) {
     }
   }
 
-  return std::string(fallback);
+  return std::u16string(fallback);
 }
 }  // namespace CustomJSONData

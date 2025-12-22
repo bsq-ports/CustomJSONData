@@ -60,6 +60,7 @@
 #include "CJDLogger.h"
 #include "VList.h"
 
+#include <limits>
 #include <regex>
 #include <chrono>
 #include <codecvt>
@@ -369,20 +370,29 @@ MAKE_PAPER_HOOK_MATCH(BeatmapCallbacksController_Dispose, &BeatmapCallbacksContr
   return BeatmapCallbacksController_Dispose(self);
 }
 
-static float GetAheadTime(Il2CppObject const* obj) {
+static float GetAheadTime(Il2CppObject const* obj, float aheadTimeOriginal) {
 
   static auto const* CustomNoteKlass = classof(CustomJSONData::CustomNoteData*);
   static auto const* CustomObstacleKlass = classof(CustomJSONData::CustomObstacleData*);
+  static auto const* CustomSliderKlass = classof(CustomJSONData::CustomSliderData*);
 
+  float aheadTime = aheadTimeOriginal;
   if (obj->klass == CustomNoteKlass) {
-    return static_cast<CustomJSONData::CustomNoteData const*>(obj)->aheadTimeNoodle;
+    aheadTime = static_cast<CustomJSONData::CustomNoteData const*>(obj)->aheadTimeNoodle;
   }
 
   if (obj->klass == CustomObstacleKlass) {
-    return static_cast<CustomJSONData::CustomObstacleData const*>(obj)->aheadTimeNoodle;
+    aheadTime = static_cast<CustomJSONData::CustomObstacleData const*>(obj)->aheadTimeNoodle;
   }
 
-  return 0;
+  if (obj->klass == CustomObstacleKlass) {
+    aheadTime = static_cast<CustomJSONData::CustomSliderData const*>(obj)->aheadTimeNoodle;
+  }
+
+  // we use infinity to indicate null
+  if (aheadTime == std::numeric_limits<float>::infinity()) aheadTime = aheadTimeOriginal;
+
+  return aheadTime;
 }
 
 // clang-format off
@@ -493,7 +503,7 @@ MAKE_PAPER_HOOK_MATCH(BeatmapCallbacksController_ManualUpdateTranspile, &Beatmap
            linkedListNode != nullptr; linkedListNode = CustomJSONData::LinkedListNode_1_get_Next(linkedListNode)) {
         auto* value2 = linkedListNode->get_Value();
         // transpile here NE
-        if (value2->time - value->aheadTime - GetAheadTime(value2) > songTime) {
+        if (value2->time - GetAheadTime(value2, value->aheadTime) > songTime) {
           break;
         }
         //

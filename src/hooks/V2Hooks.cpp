@@ -64,7 +64,6 @@ std::optional<v2::CustomBeatmapSaveData*> ParseBeatmapSaveDataJson_v2(StringW st
     auto sharedDoc = parseDocument(contents);
     if (!sharedDoc) return nullptr;
 
-    auto version = GetVersionFromPath(contents);
 
     v2::CustomBeatmapSaveData* saveData = v2::CustomBeatmapSaveData::Deserialize(*sharedDoc);
 
