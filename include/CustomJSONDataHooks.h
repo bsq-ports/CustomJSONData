@@ -18,4 +18,8 @@ namespace v3 {
 void InstallHooks();
 }
 
+namespace v4 {
+void InstallHooks();
 }
+
+} // namespace CustomJSONData
