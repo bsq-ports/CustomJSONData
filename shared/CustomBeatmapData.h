@@ -166,6 +166,7 @@ DECLARE_CLASS_CODEGEN(CustomJSONData, CustomObstacleData, GlobalNamespace::Obsta
   DECLARE_INSTANCE_FIELD(CustomJSONData::JSONWrapper*, customData);
   // Used for Noodle Extensions
   DECLARE_INSTANCE_FIELD(float, bpm);
+  // We use float infinity to indicate null here
   DECLARE_INSTANCE_FIELD(float, aheadTimeNoodle);
 };
 
@@ -183,6 +184,7 @@ DECLARE_CLASS_CODEGEN(CustomJSONData, CustomNoteData, GlobalNamespace::NoteData)
   DECLARE_INSTANCE_FIELD(CustomJSONData::JSONWrapper*, customData);
   // Used for Noodle Extensions
   DECLARE_INSTANCE_FIELD(float, bpm);
+  // We use float infinity to indicate null here
   DECLARE_INSTANCE_FIELD(float, aheadTimeNoodle);
 };
 
@@ -204,6 +206,8 @@ DECLARE_CLASS_CODEGEN(CustomJSONData, CustomSliderData, GlobalNamespace::SliderD
   DECLARE_INSTANCE_FIELD(CustomJSONData::JSONWrapper*, customData);
   // Used for Noodle Extensions
   DECLARE_INSTANCE_FIELD(float, bpm);
+  // We use float infinity to indicate null here
+  DECLARE_INSTANCE_FIELD(float, aheadTimeNoodle);
 };
 
 DECLARE_CLASS_CODEGEN(CustomJSONData, CustomWaypointData, GlobalNamespace::WaypointData) {
