@@ -385,7 +385,7 @@ static float GetAheadTime(Il2CppObject const* obj, float aheadTimeOriginal) {
     aheadTime = static_cast<CustomJSONData::CustomObstacleData const*>(obj)->aheadTimeNoodle;
   }
 
-  if (obj->klass == CustomObstacleKlass) {
+  if (obj->klass == CustomSliderKlass) {
     aheadTime = static_cast<CustomJSONData::CustomSliderData const*>(obj)->aheadTimeNoodle;
   }
 
