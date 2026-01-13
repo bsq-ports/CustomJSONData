@@ -98,14 +98,16 @@ static OptPair ReadOptionalPair(rapidjson::Value const& object, std::string_view
   auto itr = object.FindMember(key.data());
 
   if (itr != object.MemberEnd() && itr->value.Size() >= 1) {
-    float x = itr->value[0].GetFloat();
-    float y = 0;
+    const auto& val = itr->value[0];
+    std::optional<float> x = val.IsNull() ? std::nullopt : std::optional{ val.GetFloat() };
+    std::optional<float> y = 0;
 
     if (itr->value.Size() >= 2) {
-      y = itr->value[1].GetFloat();
-      return { std::optional<float>(x), std::optional<float>(y) };
+      const auto& val2 = itr->value[1];
+      y = val2.IsNull() ? std::nullopt : std::optional{ val2.GetFloat() };
+      return { x, y };
     }
-    return { std::optional<float>(x), std::nullopt };
+    return { x, std::nullopt };
   }
   return { std::nullopt, std::nullopt };
 }
