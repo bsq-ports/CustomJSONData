@@ -3,8 +3,10 @@
 #include "CustomJSONDataHooks.h"
 
 #include "HookUtils.hpp"
+#include "misc/BeatmapFieldUtils.hpp"
+#include "misc/BeatmapDataLoaderUtils.hpp"
 
-#include "BeatmapSaveDataVersion2_6_0AndEarlier/zzzz__EventData_def.hpp"
+#include "BeatmapSaveDataVersion2_6_0AndEarlier/EventData.hpp"
 #include "BeatmapSaveDataVersion2_6_0AndEarlier/BeatmapSaveDataItem.hpp"
 #include "BeatmapDataLoaderVersion2_6_0AndEarlier/BeatmapDataLoader.hpp"
 
@@ -12,10 +14,14 @@
 #include "BeatmapSaveDataVersion4/LightshowSaveData.hpp"
 
 #include "GlobalNamespace/BpmTimeProcessor.hpp"
+#include "GlobalNamespace/BeatmapEventData.hpp"
 #include "GlobalNamespace/EnvironmentKeywords.hpp"
 #include "GlobalNamespace/IEnvironmentInfo.hpp"
 #include "GlobalNamespace/IEnvironmentLightGroups.hpp"
 #include "GlobalNamespace/EnvironmentLightGroups.hpp"
+#include "GlobalNamespace/ColorBoostBeatmapEventData.hpp"
+#include "GlobalNamespace/DefaultEnvironmentEventsFactory.hpp"
+#include "GlobalNamespace/PlayerSpecificSettings.hpp"
 #include "GlobalNamespace/DefaultEnvironmentEvents.hpp"
 #include "GlobalNamespace/BeatmapObjectData.hpp"
 #include "GlobalNamespace/NoteData.hpp"

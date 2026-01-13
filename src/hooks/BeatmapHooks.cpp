@@ -4,6 +4,9 @@
 #include "HookUtils.hpp"
 #include "CustomBeatmapData.h"
 
+#include "misc/BeatmapDataLoaderUtils.hpp"
+#include "misc/BeatmapFieldUtils.hpp"
+
 #include "BeatmapSaveDataVersion2_6_0AndEarlier/zzzz__EventData_def.hpp"
 #include "BeatmapSaveDataVersion2_6_0AndEarlier/BeatmapSaveDataItem.hpp"
 #include "BeatmapDataLoaderVersion2_6_0AndEarlier/BeatmapDataLoader.hpp"
@@ -35,6 +38,8 @@
 #include "GlobalNamespace/NoteSpawnData.hpp"
 #include "GlobalNamespace/NoteCutDirectionExtensions.hpp"
 #include "GlobalNamespace/BeatmapObjectSpawnMovementData.hpp"
+
+#include "System/Collections/Generic/Dictionary_2.hpp"
 
 #include "System/Action.hpp"
 

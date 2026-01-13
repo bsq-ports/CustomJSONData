@@ -1,10 +1,11 @@
 #include <regex>
 #include <string>
 #include <string_view>
-#include <type_traits>
 #include <vector>
 
 #include "beatsaber-hook/shared/config/rapidjson-utils.hpp"
+
+#include "CJDLogger.h"
 
 #include "misc/BeatmapDataLoaderUtils.hpp"
 #include "misc/BeatmapFieldUtils.hpp"
@@ -36,7 +37,7 @@ template <typename T> constexpr void cleanAndSort(std::vector<T>& vec) {
     it++;
   }
 
-  sortInPlace<T>({vec.begin(), vec.end()});
+  sortInPlace<T>({ vec.begin(), vec.end() });
 };
 
 static std::optional<std::shared_ptr<rapidjson::Document>> parseDocument(std::string_view stringData) {
@@ -50,7 +51,7 @@ static std::optional<std::shared_ptr<rapidjson::Document>> parseDocument(std::st
     return std::nullopt;
   }
 
-  CJDLogger::Logger.fmtLog<LogLevel::DBG>("Parsing json success");
+  CJDLogger::Logger.fmtLog<Paper::LogLevel::DBG>("Parsing json success");
 
   return sharedDoc;
 }
@@ -74,4 +75,4 @@ static std::u16string GetVersionFromPath(std::u16string_view path) {
 
   return std::u16string(fallback);
 }
-}  // namespace CustomJSONData
+} // namespace CustomJSONData

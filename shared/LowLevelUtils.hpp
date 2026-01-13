@@ -1,6 +1,5 @@
 #pragma once
 
-#include <optional>
 #include "beatsaber-hook/shared/utils/il2cpp-utils-methods.hpp"
 
 /// Collection of methods that are intended to be low level performance optimizations for
