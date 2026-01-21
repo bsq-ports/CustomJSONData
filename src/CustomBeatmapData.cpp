@@ -206,11 +206,11 @@ void CustomJSONData::CustomSliderData::ctor(
     ::GlobalNamespace::SliderMidAnchorMode midAnchorMode, int sliceCount, float squishAmount) {
   static auto const* SliderData_Ctor = il2cpp_utils::FindMethodUnsafe(classof(SliderData*), ".ctor", 24);
   il2cpp_utils::RunMethodRethrow<void, false>(
-      this, SliderData_Ctor, time, beat, rotation, sliderType, colorType, hasHeadNote, headTime, headLineIndex,
-      headLineLayer, headBeforeJumpLineLayer, headControlPointLengthMultiplier, headCutDirection,
-      headCutDirectionAngleOffset, hasTailNote, tailTime, tailLineIndex, tailLineLayer, tailBeforeJumpLineLayer,
-      tailControlPointLengthMultiplier, tailCutDirection, tailCutDirectionAngleOffset, midAnchorMode, sliceCount,
-      squishAmount);
+      this, SliderData_Ctor, sliderType, colorType, hasHeadNote, headTime, headBeat, headRotation, 
+      headLineIndex, headLineLayer, headBeforeJumpLineLayer, headControlPointLengthMultiplier, headCutDirection,
+      headCutDirectionAngleOffset, hasTailNote, tailTime, tailRotation, tailLineIndex, tailLineLayer, 
+      tailBeforeJumpLineLayer, tailControlPointLengthMultiplier, tailCutDirection, tailCutDirectionAngleOffset, 
+      midAnchorMode, sliceCount, squishAmount);
   INVOKE_CTOR();
   this->aheadTimeNoodle = std::numeric_limits<float>::infinity();
 }
