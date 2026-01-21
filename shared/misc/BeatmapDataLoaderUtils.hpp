@@ -6,12 +6,7 @@
 #include "BeatmapDataLoaderVersion2_6_0AndEarlier/BeatmapDataLoader.hpp"
 
 #include "BeatmapSaveDataCommon/NoteLineLayer.hpp"
-#include "GlobalNamespace/ColorBoostBeatmapEventData.hpp"
 #include "GlobalNamespace/EnvironmentKeywords.hpp"
-#include "GlobalNamespace/BeatmapDataItem.hpp"
-#include "GlobalNamespace/BeatmapDataSortedListForTypeAndIds_1.hpp"
-#include "GlobalNamespace/ISortedList_1.hpp"
-#include "GlobalNamespace/BPMChangeBeatmapEventData.hpp"
 #include "GlobalNamespace/BeatmapEventTransitionType.hpp"
 #include "GlobalNamespace/BeatmapEventTypeExtensions.hpp"
 #include "GlobalNamespace/DefaultEnvironmentEvents.hpp"
@@ -25,23 +20,14 @@
 #include "GlobalNamespace/LightRotationBeatmapEventDataBox.hpp"
 #include "GlobalNamespace/LightRotationBaseData.hpp"
 #include "GlobalNamespace/BeatmapEventDataBoxGroupLists.hpp"
-#include "GlobalNamespace/DefaultEnvironmentEventsFactory.hpp"
 #include "GlobalNamespace/BeatmapEventDataBoxGroupList.hpp"
 #include "GlobalNamespace/EnvironmentLightGroups.hpp"
 #include "GlobalNamespace/IndexFilter.hpp"
-#include "GlobalNamespace/LightGroupSO.hpp"
 #include "GlobalNamespace/ILightGroup.hpp"
-#include "GlobalNamespace/PlayerSpecificSettings.hpp"
-#include "GlobalNamespace/EnvironmentEffectsFilterPreset.hpp"
+
+#include "UnityEngine/Object.hpp"
 
 #include "../LowLevelUtils.hpp"
-#include "System/Collections/Generic/IReadOnlyDictionary_2.hpp"
-#include "System/Collections/Generic/Dictionary_2.hpp"
-#include "System/Collections/Generic/KeyValuePair_2.hpp"
-#include "System/Collections/Generic/LinkedList_1.hpp"
-#include "System/Collections/Generic/LinkedListNode_1.hpp"
-#include "System/Collections/Generic/HashSet_1.hpp"
-#include "System/Collections/Generic/IEnumerator_1.hpp"
 #include "GlobalNamespace/IEnvironmentLightGroups.hpp"
 
 #include "../CustomBeatmapSaveDatav3.h"
@@ -51,8 +37,6 @@
 #include "../CJDLogger.h"
 #include "../VList.h"
 #include "BeatmapFieldUtils.hpp"
-
-#include <concepts>
 
 // this header exists purely for organizing
 

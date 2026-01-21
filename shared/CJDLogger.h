@@ -1,5 +1,4 @@
 #pragma once
-#include "beatsaber-hook/shared/utils/logging.hpp"
 #include "beatsaber-hook/shared/utils/il2cpp-utils.hpp"
 
 #include "scotland2/shared/loader.hpp"

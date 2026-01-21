@@ -10,8 +10,11 @@
 #include "beatsaber-hook/shared/utils/il2cpp-type-check.hpp"
 
 #include "GlobalNamespace/CallbacksInTime.hpp"
-
+#include "GlobalNamespace/BeatmapCallbacksController.hpp"
 #include "System/Collections/Generic/Dictionary_2.hpp"
+#include "UnityEngine/Object.hpp"
+
+#include "System/Collections/Generic/LinkedListNode_1.hpp"
 
 using namespace CustomJSONData;
 using namespace GlobalNamespace;

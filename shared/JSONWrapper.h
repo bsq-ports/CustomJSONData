@@ -3,8 +3,6 @@
 #include "custom-types/shared/macros.hpp"
 #include "beatsaber-hook/shared/config/rapidjson-utils.hpp"
 
-#include "System/Object.hpp"
-
 #include "CJDLogger.h"
 
 #include <unordered_map>

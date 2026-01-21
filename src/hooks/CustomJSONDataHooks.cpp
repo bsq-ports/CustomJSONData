@@ -23,9 +23,12 @@
 #include "GlobalNamespace/EnvironmentIntensityReductionOptions.hpp"
 #include "GlobalNamespace/CallbacksInTime.hpp"
 #include "GlobalNamespace/IReadonlyBeatmapData.hpp"
+#include "GlobalNamespace/DefaultEnvironmentEventsFactory.hpp"
+#include "GlobalNamespace/BeatmapCallbacksController.hpp"
 #include "GlobalNamespace/BeatmapEventDataLightsExtensions.hpp"
 
 #include "System/Action.hpp"
+#include "System/Collections/Generic/Dictionary_2.hpp"
 
 #include "UnityEngine/JsonUtility.hpp"
 

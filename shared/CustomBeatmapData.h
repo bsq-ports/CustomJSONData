@@ -108,7 +108,7 @@ public:
       auto val = node->item;
       if (!val) continue;
 
-      items.template emplace_back(reinterpret_cast<T>(val));
+      items.emplace_back(reinterpret_cast<T>(val));
     }
 
     return items;
@@ -126,7 +126,7 @@ public:
       auto val = node->item;
       if (!val) continue;
 
-      items.template emplace_back(val);
+      items.emplace_back(val);
     }
 
     return items;

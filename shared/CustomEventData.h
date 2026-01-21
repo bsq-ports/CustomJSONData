@@ -2,19 +2,21 @@
 
 #include "_config.hpp"
 
-#include "beatsaber-hook/shared/config/rapidjson-utils.hpp"
 #include "custom-types/shared/macros.hpp"
 
-#include "CJDLogger.h"
+#include "beatsaber-hook/shared/config/rapidjson-utils.hpp"
+
 #include "GlobalNamespace/BeatmapDataItem.hpp"
 #include "GlobalNamespace/BeatmapDataCallbackWrapper.hpp"
-#include "GlobalNamespace/BeatmapCallbacksController.hpp"
+#include "GlobalNamespace/zzzz__BeatmapCallbacksController_def.hpp"
 
-#include "System/Collections/Generic/LinkedListNode_1.hpp"
-
-#include "UnityEngine/Object.hpp"
 
 #include "LowLevelUtils.hpp"
+
+namespace System::Collections::Generic {
+template <class T>
+class LinkedListNode_1;
+} // namespace System::Collections::Generic
 
 namespace GlobalNamespace {
 class BeatmapCallbacksController;
