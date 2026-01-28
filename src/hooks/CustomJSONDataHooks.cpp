@@ -594,5 +594,6 @@ void CustomJSONData::InstallHooks() {
 
   v2::InstallHooks();
   v3::InstallHooks();
+  v4::InstallHooks();
   InstallBeatmapHooks();
 }
