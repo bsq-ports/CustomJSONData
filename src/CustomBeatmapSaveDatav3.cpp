@@ -118,14 +118,12 @@ void CustomBeatmapSaveData_ColorNoteData::ctor(float beat, int line, int layer,
                                                ::BeatmapSaveDataCommon::NoteColorType color,
                                                ::BeatmapSaveDataCommon::NoteCutDirection cutDirection, int angleOffset) {
   INVOKE_CTOR();
-  static auto const* ctor = il2cpp_utils::FindMethodUnsafe(classof(BeatmapSaveDataVersion3::ColorNoteData*), ".ctor", 6);
-  il2cpp_utils::RunMethodRethrow(this, ctor, beat, line, layer, color, cutDirection, angleOffset);
+  this->_ctor( beat, line, layer, color, cutDirection, angleOffset);
 }
 
 void CustomBeatmapSaveData_BombNoteData::ctor(float beat, int line, int layer) {
   INVOKE_CTOR();
-  static auto const* ctor = il2cpp_utils::FindMethodUnsafe(classof(BeatmapSaveDataVersion3::BombNoteData*), ".ctor", 3);
-  il2cpp_utils::RunMethodRethrow(this, ctor, beat, line, layer);
+  this->_ctor( beat, line, layer);
 }
 
 void CustomBeatmapSaveData_SliderData::ctor(BeatmapSaveDataCommon::NoteColorType colorType,
@@ -136,9 +134,7 @@ void CustomBeatmapSaveData_SliderData::ctor(BeatmapSaveDataCommon::NoteColorType
                                             ::BeatmapSaveDataCommon::NoteCutDirection tailCutDirection,
                                             ::BeatmapSaveDataCommon::SliderMidAnchorMode sliderMidAnchorMode) {
   INVOKE_CTOR();
-  static auto const* ctor = il2cpp_utils::FindMethodUnsafe(classof(BeatmapSaveDataVersion3::SliderData*), ".ctor", 12);
-  il2cpp_utils::RunMethodRethrow(
-      this, ctor, colorType, headBeat, headLine, headLayer, headControlPointLengthMultiplier, headCutDirection,
+  this->_ctor( colorType, headBeat, headLine, headLayer, headControlPointLengthMultiplier, headCutDirection,
       tailBeat, tailLine, tailLayer, tailControlPointLengthMultiplier, tailCutDirection, sliderMidAnchorMode);
 }
 
@@ -147,23 +143,20 @@ void CustomBeatmapSaveData_BurstSliderData::ctor(BeatmapSaveDataCommon::NoteColo
                                                  ::BeatmapSaveDataCommon::NoteCutDirection headCutDirection, float tailBeat,
                                                  int tailLine, int tailLayer, int sliceCount, float squishAmount) {
   INVOKE_CTOR();
-  static auto const* ctor = il2cpp_utils::FindMethodUnsafe(classof(BeatmapSaveDataVersion3::BurstSliderData*), ".ctor", 10);
-  il2cpp_utils::RunMethodRethrow(this, ctor, colorType, headBeat, headLine, headLayer, headCutDirection, tailBeat,
+  this->_ctor( colorType, headBeat, headLine, headLayer, headCutDirection, tailBeat,
                                        tailLine, tailLayer, sliceCount, squishAmount);
 }
 
 void CustomBeatmapSaveData_ObstacleData::ctor(float beat, int line, int layer, float duration, int width, int height) {
   INVOKE_CTOR();
-  static auto const* ctor = il2cpp_utils::FindMethodUnsafe(classof(BeatmapSaveDataVersion3::ObstacleData*), ".ctor", 6);
-  il2cpp_utils::RunMethodRethrow(this, ctor, beat, line, layer, duration, width, height);
+  this->_ctor( beat, line, layer, duration, width, height);
 }
 
 void CustomJSONData::v3::CustomBeatmapSaveData_BasicEventData::ctor(
     float time, BeatmapSaveDataCommon::BeatmapEventType type, int value,
     float floatValue) {
   INVOKE_CTOR();
-  static auto const* ctor = il2cpp_utils::FindMethodUnsafe(classof(BeatmapSaveDataVersion3::BasicEventData*), ".ctor", 4);
-  il2cpp_utils::RunMethodRethrow(this, ctor, time, type, value, floatValue);
+  this->_ctor( time, type, value, floatValue);
 }
 
 
