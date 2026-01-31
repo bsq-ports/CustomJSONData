@@ -28,8 +28,7 @@ CJD_MOD_EXPORT SafePtr<System::Collections::Generic::LinkedListNode_1<GlobalName
 
 void CustomEventData::ctor(float time) {
   INVOKE_CTOR();
-  static auto const* ctor = il2cpp_utils::FindMethodUnsafe(classof(BeatmapDataItem*), ".ctor", 4);
-  il2cpp_utils::RunMethodRethrow(this, ctor, time, 0, 0, BeatmapDataItemType(2));
+  this->_ctor(time, 0, 0, BeatmapDataItemType(2));
   BeatmapDataItem::_time_k__BackingField = time;
   BeatmapDataItem::type = 2;
 }
