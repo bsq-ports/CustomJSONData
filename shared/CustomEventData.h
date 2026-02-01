@@ -1,5 +1,6 @@
 #pragma once
 
+#include "JSONWrapper.h"
 #include "_config.hpp"
 
 #include "custom-types/shared/macros.hpp"
@@ -30,14 +31,14 @@ private:
   DECLARE_FASTER_CTOR(ctor, float time);
 
 public:
-  static CustomEventData* New(float time, std::string_view type, size_t typeHash, rapidjson::Value const* data);
+  static CustomEventData* New(float time, std::string_view type, size_t typeHash, JSONWrapper* customData);
 
   DECLARE_OVERRIDE_METHOD(CustomEventData*, GetCopy, il2cpp_utils::FindMethod("", "BeatmapDataItem", "GetCopy"));
 
 public:
   std::string_view type;
   size_t typeHash;
-  rapidjson::Value const* data;
+  DECLARE_INSTANCE_FIELD(JSONWrapper*, customData);
 };
 
 DECLARE_CLASS_CODEGEN(CustomJSONData, CustomBeatmapDataCallbackWrapper, GlobalNamespace::BeatmapDataCallbackWrapper) {

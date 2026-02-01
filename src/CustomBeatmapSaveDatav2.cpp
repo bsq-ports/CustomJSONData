@@ -115,7 +115,8 @@ static void ConvertBeatmapSaveDataPreV2_5_0(CustomJSONData::v2::CustomBeatmapSav
   beatmapSaveData->_events = list;
 }
 
-static decltype(CustomJSONData::JSONWrapper::value) GetCustomData(rapidjson::Value const& doc) {
+// get the rapidjson value for _customData if it exists
+static CustomJSONData::v2::CustomDataOpt GetCustomData(rapidjson::Value const& doc) {
   auto customDataIt = doc.FindMember("_customData");
   if (customDataIt != doc.MemberEnd() && customDataIt->value.IsObject()) {
     return customDataIt->value;

@@ -66,8 +66,10 @@ static inline auto const customData = "customData";
 } // namespace CustomJSONData::v3::Constants
 
 namespace CustomJSONData::v3 {
-using CustomDataOpt = std::optional<std::reference_wrapper<rapidjson::Value const>>;
-using CustomDataOptUTF16 = std::optional<std::reference_wrapper<SongCore::CustomJSONData::ValueUTF16 const>>;
+using CustomData = rapidjson::Value const;
+using CustomDataUTF16 = SongCore::CustomJSONData::ValueUTF16 const;
+using CustomDataOpt = std::optional<std::reference_wrapper<CustomData>>;
+using CustomDataOptUTF16 = std::optional<std::reference_wrapper<CustomDataUTF16>>;
 
 } // namespace CustomJSONData::v3
 
