@@ -32,19 +32,19 @@ void CustomEventData::ctor(float time) {
   BeatmapDataItem::_time_k__BackingField = time;
   BeatmapDataItem::type = 2;
 }
-CustomEventData* CustomEventData::New(float time, std::string_view type, size_t typeHash, rapidjson::Value const* data) {
+CustomEventData* CustomEventData::New(float time, std::string_view type, size_t typeHash, JSONWrapper* data) {
   auto event = CustomEventData::New_ctor(time);
   CRASH_UNLESS(data);
 
   event->typeHash = typeHash;
   event->type = type;
-  event->data = data;
+  event->customData = data;
 
   return event;
 }
 
 CustomEventData* CustomEventData::GetCopy() {
-  auto* copy = CustomJSONData::CustomEventData::New(this->time, this->type, typeHash, this->data);
+  auto* copy = CustomJSONData::CustomEventData::New(this->time, this->type, typeHash, this->customData->GetCopy());
   return copy;
 }
 
