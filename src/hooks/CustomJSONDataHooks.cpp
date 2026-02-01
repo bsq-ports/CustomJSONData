@@ -28,6 +28,7 @@
 #include "GlobalNamespace/BeatmapEventDataLightsExtensions.hpp"
 
 #include "System/Action.hpp"
+#include "System/Action_1.hpp"
 #include "System/Collections/Generic/Dictionary_2.hpp"
 
 #include "UnityEngine/JsonUtility.hpp"
@@ -486,6 +487,10 @@ MAKE_PAPER_HOOK_MATCH(BeatmapCallbacksController_ManualUpdateTranspile, &Beatmap
     return;
   }
 
+  if(self->willStartProcessingCallbacksThisFrameEvent) {
+    self->willStartProcessingCallbacksThisFrameEvent->Invoke(songTime);
+  }
+
   self->_songTime = songTime;
   self->_processingCallbacks = true;
   if (songTime > self->_prevSongTime) {
@@ -594,5 +599,6 @@ void CustomJSONData::InstallHooks() {
 
   v2::InstallHooks();
   v3::InstallHooks();
+  v4::InstallHooks();
   InstallBeatmapHooks();
 }

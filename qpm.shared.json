@@ -1,5 +1,4 @@
 {
-  "$schema": "https://raw.githubusercontent.com/QuestPackageManager/QPM.Package/refs/heads/main/qpm.shared.schema.json",
   "config": {
     "version": "0.4.0",
     "sharedDir": "shared",
@@ -7,7 +6,7 @@
     "info": {
       "name": "CustomJSONData",
       "id": "custom-json-data",
-      "version": "0.24.3",
+      "version": "0.24.4",
       "url": "https://github.com/StackDoubleFlow/CustomJSONData",
       "additionalData": {
         "overrideSoName": "libcustom-json-data.so",
@@ -37,6 +36,7 @@
           "pwsh ./scripts/ndk-stack.ps1"
         ]
       },
+      "ndk": "^27.3.13750724",
       "qmodIncludeDirs": [
         "./build",
         "./extern/libs"
@@ -52,7 +52,7 @@
       },
       {
         "id": "bs-cordl",
-        "versionRange": "4007.*",
+        "versionRange": "4008.*",
         "additionalData": {}
       },
       {
@@ -64,7 +64,7 @@
       },
       {
         "id": "songcore",
-        "versionRange": "^1.1.23",
+        "versionRange": "^1.1.25",
         "additionalData": {
           "includeQmod": true,
           "private": true
@@ -101,14 +101,49 @@
   "restoredDependencies": [
     {
       "dependency": {
-        "id": "custom-types",
-        "versionRange": "=0.18.3",
+        "id": "paper2_scotland2",
+        "versionRange": "=4.7.0",
         "additionalData": {
-          "soLink": "https://github.com/QuestPackageManager/Il2CppQuestTypePatching/releases/download/v0.18.3/libcustom-types.so",
-          "debugSoLink": "https://github.com/QuestPackageManager/Il2CppQuestTypePatching/releases/download/v0.18.3/debug_libcustom-types.so",
+          "soLink": "https://github.com/Fernthedev/paperlog/releases/download/v4.7.0/libpaper2_scotland2.so",
+          "overrideSoName": "libpaper2_scotland2.so",
+          "modLink": "https://github.com/Fernthedev/paperlog/releases/download/v4.7.0/paper2_scotland2.qmod",
+          "branchName": "version/v4_7_0",
+          "compileOptions": {
+            "systemIncludes": [
+              "shared/utfcpp/source"
+            ]
+          },
+          "cmake": false
+        }
+      },
+      "version": "4.7.0"
+    },
+    {
+      "dependency": {
+        "id": "libil2cpp",
+        "versionRange": "=0.4.0",
+        "additionalData": {
+          "headersOnly": true,
+          "compileOptions": {
+            "systemIncludes": [
+              "il2cpp/external/baselib/Include",
+              "il2cpp/external/baselib/Platforms/Android/Include"
+            ]
+          }
+        }
+      },
+      "version": "0.4.0"
+    },
+    {
+      "dependency": {
+        "id": "custom-types",
+        "versionRange": "=0.18.4",
+        "additionalData": {
+          "soLink": "https://github.com/QuestPackageManager/Il2CppQuestTypePatching/releases/download/v0.18.4/libcustom-types.so",
+          "debugSoLink": "https://github.com/QuestPackageManager/Il2CppQuestTypePatching/releases/download/v0.18.4/debug_libcustom-types.so",
           "overrideSoName": "libcustom-types.so",
-          "modLink": "https://github.com/QuestPackageManager/Il2CppQuestTypePatching/releases/download/v0.18.3/CustomTypes.qmod",
-          "branchName": "version/v0_18_3",
+          "modLink": "https://github.com/QuestPackageManager/Il2CppQuestTypePatching/releases/download/v0.18.4/CustomTypes.qmod",
+          "branchName": "version/v0_18_4",
           "compileOptions": {
             "cppFlags": [
               "-Wno-invalid-offsetof"
@@ -117,7 +152,7 @@
           "cmake": true
         }
       },
-      "version": "0.18.3"
+      "version": "0.18.4"
     },
     {
       "dependency": {
@@ -133,10 +168,10 @@
     {
       "dependency": {
         "id": "bs-cordl",
-        "versionRange": "=4007.0.0",
+        "versionRange": "=4008.0.0",
         "additionalData": {
           "headersOnly": true,
-          "branchName": "version/v4007_0_0",
+          "branchName": "version/v4008_0_0",
           "compileOptions": {
             "includePaths": [
               "include"
@@ -152,26 +187,7 @@
           }
         }
       },
-      "version": "4007.0.0"
-    },
-    {
-      "dependency": {
-        "id": "paper2_scotland2",
-        "versionRange": "=4.6.4",
-        "additionalData": {
-          "soLink": "https://github.com/Fernthedev/paperlog/releases/download/v4.6.4/libpaper2_scotland2.so",
-          "overrideSoName": "libpaper2_scotland2.so",
-          "modLink": "https://github.com/Fernthedev/paperlog/releases/download/v4.6.4/paper2_scotland2.qmod",
-          "branchName": "version/v4_6_4",
-          "compileOptions": {
-            "systemIncludes": [
-              "shared/utfcpp/source"
-            ]
-          },
-          "cmake": false
-        }
-      },
-      "version": "4.6.4"
+      "version": "4008.0.0"
     },
     {
       "dependency": {
@@ -186,22 +202,18 @@
     },
     {
       "dependency": {
-        "id": "fmt",
-        "versionRange": "=11.0.2",
+        "id": "songcore",
+        "versionRange": "=1.1.25",
         "additionalData": {
-          "headersOnly": true,
-          "branchName": "version/v11_0_2",
-          "compileOptions": {
-            "systemIncludes": [
-              "fmt/include/"
-            ],
-            "cppFlags": [
-              "-DFMT_HEADER_ONLY"
-            ]
-          }
+          "soLink": "https://github.com/raineaeternal/Quest-SongCore/releases/download/v1.1.25/libsongcore.so",
+          "debugSoLink": "https://github.com/raineaeternal/Quest-SongCore/releases/download/v1.1.25/debug_libsongcore.so",
+          "overrideSoName": "libsongcore.so",
+          "modLink": "https://github.com/raineaeternal/Quest-SongCore/releases/download/v1.1.25/SongCore.qmod",
+          "branchName": "version/v1_1_25",
+          "cmake": true
         }
       },
-      "version": "11.0.2"
+      "version": "1.1.25"
     },
     {
       "dependency": {
@@ -225,21 +237,6 @@
     },
     {
       "dependency": {
-        "id": "songcore",
-        "versionRange": "=1.1.23",
-        "additionalData": {
-          "soLink": "https://github.com/raineaeternal/Quest-SongCore/releases/download/v1.1.23/libsongcore.so",
-          "debugSoLink": "https://github.com/raineaeternal/Quest-SongCore/releases/download/v1.1.23/debug_libsongcore.so",
-          "overrideSoName": "libsongcore.so",
-          "modLink": "https://github.com/raineaeternal/Quest-SongCore/releases/download/v1.1.23/SongCore.qmod",
-          "branchName": "version/v1_1_23",
-          "cmake": true
-        }
-      },
-      "version": "1.1.23"
-    },
-    {
-      "dependency": {
         "id": "scotland2",
         "versionRange": "=0.1.6",
         "additionalData": {
@@ -253,19 +250,22 @@
     },
     {
       "dependency": {
-        "id": "libil2cpp",
-        "versionRange": "=0.4.0",
+        "id": "fmt",
+        "versionRange": "=11.0.2",
         "additionalData": {
           "headersOnly": true,
+          "branchName": "version/v11_0_2",
           "compileOptions": {
             "systemIncludes": [
-              "il2cpp/external/baselib/Include",
-              "il2cpp/external/baselib/Platforms/Android/Include"
+              "fmt/include/"
+            ],
+            "cppFlags": [
+              "-DFMT_HEADER_ONLY"
             ]
           }
         }
       },
-      "version": "0.4.0"
+      "version": "11.0.2"
     }
   ]
 }

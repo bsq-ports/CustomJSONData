@@ -28,24 +28,23 @@ CJD_MOD_EXPORT SafePtr<System::Collections::Generic::LinkedListNode_1<GlobalName
 
 void CustomEventData::ctor(float time) {
   INVOKE_CTOR();
-  static auto const* ctor = il2cpp_utils::FindMethodUnsafe(classof(BeatmapDataItem*), ".ctor", 4);
-  il2cpp_utils::RunMethodRethrow(this, ctor, time, 0, 0, BeatmapDataItemType(2));
+  this->_ctor(time, 0, 0, BeatmapDataItemType(2));
   BeatmapDataItem::_time_k__BackingField = time;
   BeatmapDataItem::type = 2;
 }
-CustomEventData* CustomEventData::New(float time, std::string_view type, size_t typeHash, rapidjson::Value const* data) {
+CustomEventData* CustomEventData::New(float time, std::string_view type, size_t typeHash, JSONWrapper* data) {
   auto event = CustomEventData::New_ctor(time);
   CRASH_UNLESS(data);
 
   event->typeHash = typeHash;
   event->type = type;
-  event->data = data;
+  event->customData = data;
 
   return event;
 }
 
 CustomEventData* CustomEventData::GetCopy() {
-  auto* copy = CustomJSONData::CustomEventData::New(this->time, this->type, typeHash, this->data);
+  auto* copy = CustomJSONData::CustomEventData::New(this->time, this->type, typeHash, this->customData->GetCopy());
   return copy;
 }
 

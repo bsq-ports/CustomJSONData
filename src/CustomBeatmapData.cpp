@@ -21,10 +21,8 @@ DEFINE_TYPE(CustomJSONData, CustomWaypointData);
 DEFINE_TYPE(CustomJSONData, CustomSliderData);
 
 void CustomJSONData::CustomBeatmapData::ctor(int numberOfLines) {
-  static auto const* ctor = il2cpp_utils::FindMethodUnsafe("", "BeatmapData", ".ctor", 1);
-  PAPER_IL2CPP_CATCH_HANDLER(il2cpp_utils::RunMethodRethrow(this, ctor, numberOfLines);)
-
   INVOKE_CTOR();
+  this->_ctor(numberOfLines);
 
   ____beatmapDataItemsPerTypeAndId->_sortedListsDataProcessors->Add(csTypeOf(CustomEventData*), nullptr);
   // _beatmapDataItemsPerTypeAndId->_items->Add(csTypeOf(CustomEventData*),
@@ -36,33 +34,25 @@ void CustomJSONData::CustomBeatmapData::ctor(int numberOfLines) {
 [[deprecated("to remove")]]
 void CustomJSONData::CustomBeatmapData::AddBeatmapObjectDataOverride(
     GlobalNamespace::BeatmapObjectData* beatmapObjectData) {
-  static auto const* base = il2cpp_utils::FindMethodUnsafe("", "BeatmapData", "AddBeatmapObjectData", 1);
-
-  il2cpp_utils::RunMethodRethrow(this, base, beatmapObjectData);
+  this->AddBeatmapObjectData(beatmapObjectData);
 }
 
 [[deprecated("To remove")]]
 void CustomJSONData::CustomBeatmapData::AddBeatmapObjectDataInOrderOverride(
     GlobalNamespace::BeatmapObjectData* beatmapObjectData) {
-  static auto const* base = il2cpp_utils::FindMethodUnsafe("", "BeatmapData", "AddBeatmapObjectDataInOrder", 1);
-
-  PAPER_IL2CPP_CATCH_HANDLER(il2cpp_utils::RunMethodRethrow(this, base, beatmapObjectData);)
+  this->AddBeatmapObjectData(beatmapObjectData);
 }
 
 [[deprecated("to remove")]]
 void CustomJSONData::CustomBeatmapData::InsertBeatmapEventDataOverride(
     GlobalNamespace::BeatmapEventData* beatmapObjectData) {
-  static auto const* base = il2cpp_utils::FindMethodUnsafe("", "BeatmapData", "InsertBeatmapEventData", 1);
-
-  PAPER_IL2CPP_CATCH_HANDLER(il2cpp_utils::RunMethodRethrow(this, base, beatmapObjectData);)
+  this->InsertBeatmapEventData(beatmapObjectData);
 }
 
 [[deprecated("To remove")]]
 void CustomJSONData::CustomBeatmapData::InsertBeatmapEventDataInOrderOverride(
     GlobalNamespace::BeatmapEventData* beatmapEventData) {
-  static auto const* base = il2cpp_utils::FindMethodUnsafe("", "BeatmapData", "InsertBeatmapEventDataInOrder", 1);
-
-  PAPER_IL2CPP_CATCH_HANDLER(il2cpp_utils::RunMethodRethrow(this, base, beatmapEventData);)
+  this->InsertBeatmapEventDataInOrder(beatmapEventData);
 }
 
 void CustomJSONData::CustomBeatmapData::InsertCustomEventData(CustomJSONData::CustomEventData* customEventData) {
@@ -141,11 +131,8 @@ CustomJSONData::CustomBeatmapData* CustomJSONData::CustomBeatmapData::BaseCopy()
 void CustomJSONData::CustomBeatmapEventData::ctor(float time,
                                                   ::GlobalNamespace::BasicBeatmapEventType basicBeatmapEventType,
                                                   int value, float floatValue) {
-  static auto const* BeatmapEventData_Ctor =
-      CRASH_UNLESS(il2cpp_utils::FindMethodUnsafe(classof(BasicBeatmapEventData*), ".ctor", 4));
-  il2cpp_utils::RunMethodRethrow<void, false>(this, BeatmapEventData_Ctor, time,
-                                              basicBeatmapEventType, value, floatValue);
   INVOKE_CTOR();
+  this->_ctor(time, basicBeatmapEventType, value, floatValue);
   this->_time_k__BackingField = time;
   this->basicBeatmapEventType = basicBeatmapEventType;
   this->value = value;
@@ -172,10 +159,8 @@ CustomJSONData::CustomBeatmapEventData* CustomJSONData::CustomBeatmapEventData::
 void CustomJSONData::CustomObstacleData::ctor(float time, float beat, float endBeat, int rotation, int lineIndex,
                                               ::GlobalNamespace::NoteLineLayer lineLayer, float duration, int width,
                                               int height) {
-  static auto const* ObstacleData_Ctor = il2cpp_utils::FindMethodUnsafe(classof(ObstacleData*), ".ctor", 9);
-  il2cpp_utils::RunMethodRethrow<void, false>(this, ObstacleData_Ctor, time, beat, endBeat, rotation, lineIndex,
-                                              lineLayer, duration, width, height);
   INVOKE_CTOR();
+  this->_ctor(time, beat, endBeat, rotation, lineIndex, lineLayer, duration, width, height);
   this->____executionOrder_k__BackingField = beat;
   this->____subtypeIdentifier_k__BackingField = rotation;
   this->aheadTimeNoodle = std::numeric_limits<float>::infinity();
@@ -204,14 +189,12 @@ void CustomJSONData::CustomSliderData::ctor(
     ::GlobalNamespace::NoteLineLayer tailBeforeJumpLineLayer, float tailControlPointLengthMultiplier,
     ::GlobalNamespace::NoteCutDirection tailCutDirection, float tailCutDirectionAngleOffset,
     ::GlobalNamespace::SliderMidAnchorMode midAnchorMode, int sliceCount, float squishAmount) {
-  static auto const* SliderData_Ctor = il2cpp_utils::FindMethodUnsafe(classof(SliderData*), ".ctor", 24);
-  il2cpp_utils::RunMethodRethrow<void, false>(
-      this, SliderData_Ctor, time, beat, rotation, sliderType, colorType, hasHeadNote, headTime, headLineIndex,
-      headLineLayer, headBeforeJumpLineLayer, headControlPointLengthMultiplier, headCutDirection,
-      headCutDirectionAngleOffset, hasTailNote, tailTime, tailLineIndex, tailLineLayer, tailBeforeJumpLineLayer,
-      tailControlPointLengthMultiplier, tailCutDirection, tailCutDirectionAngleOffset, midAnchorMode, sliceCount,
-      squishAmount);
   INVOKE_CTOR();
+  this->_ctor(sliderType, colorType, hasHeadNote, headTime, headBeat, headRotation, headLineIndex, headLineLayer,
+              headBeforeJumpLineLayer, headControlPointLengthMultiplier, headCutDirection, headCutDirectionAngleOffset,
+              hasTailNote, tailTime, tailRotation, tailLineIndex, tailLineLayer, tailBeforeJumpLineLayer,
+              tailControlPointLengthMultiplier, tailCutDirection, tailCutDirectionAngleOffset, midAnchorMode,
+              sliceCount, squishAmount);
   this->aheadTimeNoodle = std::numeric_limits<float>::infinity();
 }
 
@@ -236,12 +219,10 @@ void CustomJSONData::CustomNoteData::ctor(
     ::GlobalNamespace::NoteData::ScoringType scoringType, ::GlobalNamespace::ColorType colorType,
     ::GlobalNamespace::NoteCutDirection cutDirection, float timeToNextColorNote, float timeToPrevColorNote,
     int flipLineIndex, float flipYSide, float cutDirectionAngleOffset, float cutSfxVolumeMultiplier) {
-  static auto const* NoteData_Ctor = il2cpp_utils::FindMethodUnsafe(classof(NoteData*), ".ctor", 16);
-  il2cpp_utils::RunMethodRethrow<void, false>(this, NoteData_Ctor, time, beat, rotation, lineIndex, noteLineLayer,
-                                              beforeJumpNoteLineLayer, gameplayType, scoringType, colorType,
-                                              cutDirection, timeToNextColorNote, timeToPrevColorNote, flipLineIndex,
-                                              flipYSide, cutDirectionAngleOffset, cutSfxVolumeMultiplier);
   INVOKE_CTOR();
+  this->_ctor(time, beat, rotation, lineIndex, noteLineLayer, beforeJumpNoteLineLayer, gameplayType, scoringType,
+              colorType, cutDirection, timeToNextColorNote, timeToPrevColorNote, flipLineIndex, flipYSide,
+              cutDirectionAngleOffset, cutSfxVolumeMultiplier);
   this->____executionOrder_k__BackingField = beat;
   this->____subtypeIdentifier_k__BackingField = rotation;
   this->aheadTimeNoodle = std::numeric_limits<float>::infinity();
@@ -265,10 +246,8 @@ CustomJSONData::CustomNoteData* CustomJSONData::CustomNoteData::GetCopy() {
 void CustomJSONData::CustomWaypointData::ctor(float time, float beat, int rotation, int lineIndex,
                                               GlobalNamespace::NoteLineLayer noteLineLayer,
                                               GlobalNamespace::OffsetDirection offsetDirection) {
-  static auto const* WaypointData_Ctor = il2cpp_utils::FindMethodUnsafe(classof(WaypointData*), ".ctor", 6);
-  il2cpp_utils::RunMethodRethrow<void, false>(this, WaypointData_Ctor, time, beat, rotation, lineIndex, noteLineLayer,
-                                              offsetDirection);
   INVOKE_CTOR();
+  this->_ctor(time, beat, rotation, lineIndex, noteLineLayer, offsetDirection);
   this->____executionOrder_k__BackingField = beat;
   this->____subtypeIdentifier_k__BackingField = rotation;
 }

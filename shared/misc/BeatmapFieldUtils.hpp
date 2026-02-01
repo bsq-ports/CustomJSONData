@@ -24,6 +24,17 @@ static JSONWrapper* JSONWrapperOrNull(v3::CustomDataOpt const& val) {
 
   return wrapper;
 }
+static JSONWrapper* JSONWrapperOrNull(v3::CustomData* val) {
+  auto* wrapper = JSONWrapper::New_ctor();
+
+  if (!val || !val->IsObject()) {
+    return wrapper;
+  }
+
+  wrapper->value = *val;
+
+  return wrapper;
+}
 
 static v3::CustomDataOptUTF16 JSONObjectOrNull(v3::CustomDataOptUTF16 const& val) {
   if (!val || !val->get().IsObject()) {
