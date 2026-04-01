@@ -56,7 +56,7 @@ static CustomNoteData* CreateCustomBasicNoteData(float time, float beat, int rot
       NoteData::GameplayType(NoteData::GameplayType::Normal), NoteData::ScoringType(NoteData::ScoringType::Normal),
       ColorType(colorType), NoteCutDirection(cutDirection), 0.0F, 0.0F, lineIndex, 0.0F, 0.0F, 1.0F);
 
-  b->customData = CustomJSONData::JSONWrapperOrNull(customData);
+  b->customData->Init(customData);
 
   return b;
 }
@@ -69,7 +69,7 @@ static CustomNoteData* CreateCustomBombNoteData(float time, float beat, int rota
                                      NoteData::ScoringType(NoteData::ScoringType::NoScore), ColorType(ColorType::None),
                                      NoteCutDirection(NoteCutDirection::None), 0.0F, 0.0F, lineIndex, 0.0F, 0.0F, 1.0F);
 
-  b->customData = CustomJSONData::JSONWrapperOrNull(customData);
+  b->customData->Init(customData);
 
   return b;
 }
@@ -84,7 +84,7 @@ static CustomNoteData* CreateCustomBurstNoteData(float time, float beat, int rot
                                      NoteData::ScoringType(NoteData::ScoringType::ChainLink), colorType, cutDirection,
                                      0, 0, lineIndex, 0, 0, cutSfxVolumeMultiplier);
 
-  b->customData = CustomJSONData::JSONWrapperOrNull(customData);
+  b->customData->Init(customData);
 
   return b;
 }
@@ -101,7 +101,7 @@ static auto CustomSliderData_CreateCustomBurstSliderData(
       tailLineIndex, tailLineLayer, tailBeforeJumpLineLayer, 0.0f, NoteCutDirection::Any, 0.0f,
       SliderMidAnchorMode::Straight, sliceCount, squishAmount);
 
-  slider->customData = CustomJSONData::JSONWrapperOrNull(customData);
+  slider->customData->Init(customData);
 
   return slider;
 }
@@ -118,7 +118,7 @@ static auto CustomSliderData_CreateCustomSliderData(
       tailRotation, tailLineIndex, tailLineLayer, tailBeforeJumpLineLayer, tailControlPointLengthMultiplier,
       tailCutDirection, 0.0f, midAnchorMode, 0.0f, 1.0f);
 
-  slider->customData = CustomJSONData::JSONWrapperOrNull(customData);
+  slider->customData->Init(customData);
 
   return slider;
 }

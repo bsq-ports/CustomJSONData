@@ -24,11 +24,19 @@ void CustomJSONData::CustomBeatmapData::ctor(int numberOfLines) {
   INVOKE_CTOR();
   this->_ctor(numberOfLines);
 
+  // Ensure JSON wrapper fields are initialized to non-null defaults
+  this->customData = CustomJSONData::JSONWrapper::New_ctor();
+  this->beatmapCustomData = CustomJSONData::JSONWrapperUTF16::New_ctor();
+  this->levelCustomData = CustomJSONData::JSONWrapperUTF16::New_ctor();
+  this->doc = CustomJSONData::DocumentWrapper::New_ctor();
+
   ____beatmapDataItemsPerTypeAndId->_sortedListsDataProcessors->Add(csTypeOf(CustomEventData*), nullptr);
   // _beatmapDataItemsPerTypeAndId->_items->Add(csTypeOf(CustomEventData*),
   //                                            reinterpret_cast<ISortedList_1<BeatmapDataItem*>*>(
   //                                                SortedList_2<CustomEventData*,
   //                                                BeatmapDataItem*>::New_ctor(nullptr)));
+
+  
 }
 
 [[deprecated("to remove")]]
@@ -117,6 +125,9 @@ CustomJSONData::CustomBeatmapData* CustomJSONData::CustomBeatmapData::BaseCopy()
   if (copy->levelCustomData) {
     copy->levelCustomData = this->levelCustomData->GetCopy();
   }
+  if (copy->doc) {
+    copy->doc = this->doc;
+  }
 
   copy->v2orEarlier = v2orEarlier;
 
@@ -137,6 +148,7 @@ void CustomJSONData::CustomBeatmapEventData::ctor(float time,
   this->basicBeatmapEventType = basicBeatmapEventType;
   this->value = value;
   this->floatValue = floatValue;
+  this->customData = CustomJSONData::JSONWrapper::New_ctor();
 }
 
 CustomJSONData::CustomBeatmapEventData* CustomJSONData::CustomBeatmapEventData::GetCopy() {
@@ -164,6 +176,7 @@ void CustomJSONData::CustomObstacleData::ctor(float time, float beat, float endB
   this->____executionOrder_k__BackingField = beat;
   this->____subtypeIdentifier_k__BackingField = rotation;
   this->aheadTimeNoodle = std::numeric_limits<float>::infinity();
+  this->customData = CustomJSONData::JSONWrapper::New_ctor();
 }
 
 CustomJSONData::CustomObstacleData* CustomJSONData::CustomObstacleData::GetCopy() {
@@ -196,6 +209,7 @@ void CustomJSONData::CustomSliderData::ctor(
               tailControlPointLengthMultiplier, tailCutDirection, tailCutDirectionAngleOffset, midAnchorMode,
               sliceCount, squishAmount);
   this->aheadTimeNoodle = std::numeric_limits<float>::infinity();
+  this->customData = CustomJSONData::JSONWrapper::New_ctor();
 }
 
 CustomJSONData::CustomSliderData* CustomJSONData::CustomSliderData::GetCopy() {
@@ -226,6 +240,7 @@ void CustomJSONData::CustomNoteData::ctor(
   this->____executionOrder_k__BackingField = beat;
   this->____subtypeIdentifier_k__BackingField = rotation;
   this->aheadTimeNoodle = std::numeric_limits<float>::infinity();
+  this->customData = CustomJSONData::JSONWrapper::New_ctor();
 }
 
 CustomJSONData::CustomNoteData* CustomJSONData::CustomNoteData::GetCopy() {

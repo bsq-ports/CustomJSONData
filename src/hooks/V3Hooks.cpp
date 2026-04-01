@@ -246,9 +246,10 @@ MAKE_PAPER_HOOK_MATCH(BeatmapDataLoader_GetBeatmapDataFromSaveData_v3,
   CustomBeatmapData* beatmapData = CustomBeatmapData::New_ctor(4);
 
   if (auto cBeatmapSaveData = il2cpp_utils::try_cast<v3::CustomBeatmapSaveData>(beatmapSaveData)) {
-    beatmapData->customData = CustomJSONData::JSONWrapperOrNull(cBeatmapSaveData.value()->customData);
-    beatmapData->levelCustomData = CustomJSONData::JSONWrapperOrNull(cBeatmapSaveData.value()->levelCustomData);
-    beatmapData->beatmapCustomData = CustomJSONData::JSONWrapperOrNull(cBeatmapSaveData.value()->beatmapCustomData);
+    beatmapData->customData->Init(cBeatmapSaveData.value()->customData);
+    beatmapData->levelCustomData->Init(cBeatmapSaveData.value()->levelCustomData);
+    beatmapData->beatmapCustomData->Init(cBeatmapSaveData.value()->beatmapCustomData);
+    beatmapData->doc->doc = cBeatmapSaveData.value()->doc;
     beatmapData->v2orEarlier = cBeatmapSaveData.value()->isV2;
   }
 
@@ -306,7 +307,7 @@ MAKE_PAPER_HOOK_MATCH(BeatmapDataLoader_GetBeatmapDataFromSaveData_v3,
               rotationTimeProcessor->ConvertBeatToRotation(data->b), data->line, GetNoteLineLayer(data->layer),
               BeatToTime(data->b + data->duration) - beat, data->width, data->height);
 
-          obstacle->customData = CustomJSONData::JSONWrapperOrNull(data->customData);
+          obstacle->customData->Init(data->customData);
 
           return obstacle;
         });
@@ -428,7 +429,7 @@ MAKE_PAPER_HOOK_MATCH(BeatmapDataLoader_GetBeatmapDataFromSaveData_v3,
             auto* event = CustomBeatmapEventData::New_ctor(BeatToTime(data->b), data->eventType.value__, data->value,
                                                            data->floatValue);
 
-            event->customData = CustomJSONData::JSONWrapperOrNull(data->customData);
+            event->customData->Init(data->customData);
 
             return event;
           });
