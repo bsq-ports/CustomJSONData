@@ -6,7 +6,7 @@
   "info": {
     "name": "CustomJSONData",
     "id": "custom-json-data",
-    "version": "0.24.4",
+    "version": "0.24.5",
     "url": "https://github.com/StackDoubleFlow/CustomJSONData",
     "additionalData": {
       "overrideSoName": "libcustom-json-data.so",
